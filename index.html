@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Upside Down Text Generator — Flip Your Text Instantly</title>
+<meta name="description" content="Free upside down text generator. Type normal text and instantly get flipped, upside-down Unicode text you can copy and paste anywhere — Instagram, Facebook, TikTok, iMessage. Also does reverse, mirror, and fancy fonts.">
+<link rel="canonical" href="https://upsidedowntext.design/">
+<link rel="icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Upside Down Text Generator — Flip Your Text Instantly">
+<meta property="og:description" content="Free tool to flip, reverse, mirror, or style your text instantly. Copy and paste anywhere — no sign-up needed.">
+<meta property="og:url" content="https://upsidedowntext.design/">
+<meta property="og:site_name" content="Upside Down Text Generator">
+<meta property="og:image" content="https://upsidedowntext.design/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://upsidedowntext.design/og-image.png">
+<meta name="twitter:title" content="Upside Down Text Generator">
+<meta name="twitter:description" content="Flip, reverse, mirror, or style your text instantly and copy it anywhere.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Upside Down Text Generator",
+  "url": "https://upsidedowntext.design/"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Upside Down Text Generator",
+  "url": "https://upsidedowntext.design/",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any (runs in any modern web browser)",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+  "browserRequirements": "Requires JavaScript"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Does upside down text work on Instagram and Facebook?","acceptedAnswer":{"@type":"Answer","text":"Yes. Because the output is standard Unicode, it pastes and displays correctly on Instagram, Facebook, TikTok, WhatsApp, and iMessage. A handful of very old apps that don't support extended Unicode ranges may show a blank box instead of certain characters."}},
+    {"@type":"Question","name":"Will it work for capital letters and numbers?","acceptedAnswer":{"@type":"Answer","text":"Yes. Letters, numbers, and common punctuation all have flipped equivalents. A few rare symbols don't have a true upside-down match in Unicode, so those are left unchanged."}},
+    {"@type":"Question","name":"Is this safe to use in a username?","acceptedAnswer":{"@type":"Answer","text":"Generally yes, since it's valid Unicode text — but some platforms restrict special characters in usernames specifically, so check the platform's rules if a username won't save."}},
+    {"@type":"Question","name":"What's the difference between upside down, reversed flip, reverse, and mirror text?","acceptedAnswer":{"@type":"Answer","text":"Upside Down flips each letter's shape and reverses the order. Reversed Flip flips the letter shapes but keeps the original order. Reverse Text only reorders the letters. Mirror Text flips shapes horizontally instead of vertically."}}
+  ]
+}
+</script>
+<style>
+  :root{
+    --ink:#1c1a1f;
+    --paper:#f6f2e9;
+    --paper-dim:#ece5d6;
+    --gold:#c98a2c;
+    --gold-deep:#7a5216;
+    --line:#d8cfb9;
+    --card:#ffffff;
+    --muted:#6b6455;
+    --body-text:#3a362f;
+  }
+  :root[data-theme="dark"]{
+    --ink:#f2ede1;
+    --paper:#171519;
+    --paper-dim:#211e24;
+    --gold:#e0a94a;
+    --gold-deep:#f0c479;
+    --line:#39343c;
+    --card:#211e24;
+    --muted:#8f8878;
+    --body-text:#c9c2b2;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  html{scroll-padding-top:env(safe-area-inset-top,0px);}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Iowan Old Style","Palatino Linotype",Georgia,serif;
+    line-height:1.6;
+    padding-bottom:60px;
+    padding-top:env(safe-area-inset-top,0px);
+    transition:background .2s,color .2s;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px;}
+  header{padding:48px 0 16px;position:relative;}
+  .theme-toggle{
+    position:absolute;top:48px;right:24px;
+    background:var(--card);border:1px solid var(--line);
+    width:44px;height:44px;border-radius:50%;
+    cursor:pointer;font-size:16px;color:var(--ink);
+  }
+  .kicker{
+    font-family:Georgia,serif;font-style:italic;color:var(--gold-deep);
+    font-size:17px;margin:0 0 6px;transform:rotate(180deg);display:inline-block;
+  }
+  h1{font-size:38px;margin:0 0 14px;line-height:1.15;letter-spacing:-0.01em;}
+  .lede{font-size:18px;max-width:56ch;color:var(--body-text);}
+
+  .tool{margin-top:28px;background:var(--paper-dim);border:1px solid var(--line);border-radius:4px;padding:24px;}
+  label{display:block;font-size:14px;color:var(--muted);margin-bottom:6px;}
+  textarea{
+    width:100%;min-height:110px;font-family:inherit;font-size:19px;padding:14px;
+    border:1px solid var(--line);border-radius:3px;background:var(--card);color:var(--ink);resize:vertical;
+  }
+  textarea:focus{outline:2px solid var(--gold);outline-offset:1px;}
+
+  .modes{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;}
+  .mode{background:var(--card);border:1px solid var(--line);color:var(--muted);font-family:inherit;font-size:13px;padding:8px 14px;border-radius:20px;cursor:pointer;}
+  .mode.active{background:var(--gold);border-color:var(--gold);color:#1c1a1f;font-weight:600;}
+
+  .divider{display:flex;align-items:center;gap:12px;margin:18px 0;color:var(--gold-deep);font-size:13px;}
+  .divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--line);}
+
+  .output-box{position:relative;background:var(--card);border:1px solid var(--line);border-radius:3px;padding:14px;min-height:64px;}
+  #output{font-size:22px;word-wrap:break-word;min-height:24px;color:var(--ink);}
+  #output:empty::before{content:"Your text appears here…";color:var(--muted);font-style:italic;}
+  .row{display:flex;justify-content:space-between;align-items:center;margin-top:14px;gap:10px;flex-wrap:wrap;}
+  .count{font-size:13px;color:var(--muted);}
+  button{font-family:inherit;font-size:15px;font-weight:600;background:var(--gold);color:#1c1a1f;border:none;padding:10px 18px;border-radius:3px;cursor:pointer;}
+  button:hover{filter:brightness(0.92);}
+  button.ghost{background:transparent;color:var(--gold-deep);border:1px solid var(--gold-deep);}
+  button.ghost:hover{background:var(--gold);color:#1c1a1f;border-color:var(--gold);}
+  .copied{color:#3a7a4a;font-size:13px;margin-left:8px;}
+  :root[data-theme="dark"] .copied{color:#7fd99a;}
+
+  .fancy-list{display:none;flex-direction:column;gap:8px;}
+  .fancy-list.visible{display:flex;}
+  .fancy-row{
+    display:flex;justify-content:space-between;align-items:center;gap:12px;
+    background:var(--card);border:1px solid var(--line);border-radius:3px;padding:10px 14px;
+  }
+  .fancy-text{font-size:18px;word-break:break-word;color:var(--ink);}
+  .fancy-name{font-size:11px;color:var(--muted);display:block;margin-bottom:2px;text-transform:uppercase;letter-spacing:.04em;}
+  .fancy-copy{font-size:12px;padding:6px 12px;flex-shrink:0;min-width:64px;}
+  .fancy-copy.just-copied,.fancy-copy.just-copied:disabled{background:#3a7a4a;color:#fff;opacity:1;}
+
+  section.content{margin-top:56px;}
+  section.content h2{font-size:24px;margin:0 0 10px;}
+  section.content p{color:var(--body-text);max-width:64ch;}
+  .faq-item{margin-bottom:20px;}
+  .faq-item h3{font-size:17px;margin:0 0 4px;}
+  .faq-item p{margin:0;color:var(--body-text);}
+  footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);}
+  footer a{color:var(--gold-deep);}
+  ul.uses{padding-left:20px;color:var(--body-text);}
+  ul.uses li{margin-bottom:6px;}
+  .sitenav{display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid var(--line);}
+  .ad-zone:empty{display:none;}
+  .sitenav-brand{font-family:Georgia,serif;font-weight:bold;font-size:17px;color:var(--ink);letter-spacing:-0.01em;}
+  .sitenav-links{display:flex;gap:20px;flex-wrap:wrap;}
+  .sitenav-links a{font-size:14px;color:var(--muted);text-decoration:none;border-bottom:2px solid transparent;padding-bottom:2px;}
+  .sitenav-links a:hover{color:var(--gold-deep);border-bottom-color:var(--gold-deep);}
+  .sitenav-links a[aria-current="page"]{color:var(--ink);font-weight:bold;}
+  .ad-zone{margin:32px 0;}
+  .skip-link{
+    position:absolute;left:-9999px;top:0;background:var(--gold);color:#1c1a1f;font-weight:600;
+    padding:10px 16px;z-index:100;border-radius:0 0 4px 0;font-size:14px;
+  }
+  .skip-link:focus{left:0;}
+  a:focus-visible,button:focus-visible,textarea:focus-visible{
+    outline:2px solid var(--gold-deep);outline-offset:2px;
+  }
+  .visually-hidden{
+    position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+    clip:rect(0,0,0,0);white-space:nowrap;border:0;
+  }
+  @media (max-width:480px){
+    .mode{padding:10px 14px;font-size:14px;}
+    .theme-toggle{width:44px;height:44px;}
+    button{padding:12px 18px;}
+    .fancy-row{flex-direction:column;align-items:flex-start;}
+    .fancy-copy{align-self:flex-end;}
+  }
+</style>
+</head>
+<body>
+<a href="#input" class="skip-link">Skip to the text tool</a>
+<div class="wrap">
+  <nav class="sitenav">
+    <span class="sitenav-brand">Upside Down Text</span>
+    <div class="sitenav-links">
+      <a href="index.html" aria-current="page">Tool</a>
+      <a href="blog/index.html">Guides</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+  <header>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">🌙</button>
+    <p class="kicker">ǝpᴉsdn uʍop</p>
+    <h1>Upside Down Text Generator</h1>
+    <p class="lede">Type anything below and it transforms instantly — five different modes, all real Unicode characters you can paste into Instagram bios, texts, or Facebook posts. No app, no sign-up.</p>
+  </header>
+
+  <div class="tool">
+    <label for="input">Type your text</label>
+    <textarea id="input" placeholder="Type something here…" aria-describedby="count"></textarea>
+
+    <div class="modes" role="tablist" aria-label="Transformation mode">
+      <button class="mode active" role="tab" aria-selected="true" aria-controls="resultRegion" data-mode="updown" type="button">Upside Down</button>
+      <button class="mode" role="tab" aria-selected="false" aria-controls="resultRegion" data-mode="reversedflip" type="button">Reversed Flip</button>
+      <button class="mode" role="tab" aria-selected="false" aria-controls="resultRegion" data-mode="reverse" type="button">Reverse Text</button>
+      <button class="mode" role="tab" aria-selected="false" aria-controls="resultRegion" data-mode="mirror" type="button">Mirror Text</button>
+      <button class="mode" role="tab" aria-selected="false" aria-controls="resultRegion" data-mode="fancy" type="button">Fancy Fonts</button>
+    </div>
+
+    <div class="divider" id="dividerLabel">flips upside down into</div>
+
+    <div id="resultRegion" role="tabpanel">
+      <div class="output-box" id="singleOutputBox">
+        <div id="output"></div>
+      </div>
+      <div class="fancy-list" id="fancyList"></div>
+    </div>
+
+    <p class="visually-hidden" id="srStatus" aria-live="polite" role="status"></p>
+
+    <div class="row">
+      <span class="count" id="count">0 characters</span>
+      <div>
+        <button class="ghost" id="clearBtn" type="button">Clear</button>
+        <button id="copyBtn" type="button">Copy</button>
+        <span class="copied" id="copiedMsg" role="status" aria-live="polite" style="display:none;">Copied!</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- AD ZONE 1: primary placement. Sits below the tool, above the article content —
+       high visibility without ever overlapping the textarea, mode buttons, or copy button.
+       After AdSense approval, paste your <ins class="adsbygoogle">...</ins> unit inside this div. -->
+  <div class="ad-zone" id="ad-zone-1"></div>
+
+  <section class="content">
+    <h2>How this upside down text actually works</h2>
+    <p>This isn't an image and it isn't a font — it's plain Unicode text. Unicode includes characters that were designed to look like other letters rotated 180°, mostly from the International Phonetic Alphabet and a few math symbols. This tool swaps every letter you type for its lookalike in the mode you choose, so the whole line reads correctly when flipped, reversed, mirrored, or styled. Because it's real text, you can paste it anywhere text is accepted, and it stays searchable, copyable, and editable.</p>
+  </section>
+
+  <section class="content">
+    <h2>Where people actually use flipped and styled text</h2>
+    <ul class="uses">
+      <li><strong>Instagram and TikTok bios</strong> — a flipped or fancy line makes a bio stand out in a feed of identical-looking text.</li>
+      <li><strong>Prank texts</strong> — sending a message that looks broken or reversed to a friend.</li>
+      <li><strong>Usernames and display names</strong> — flipped and styled characters are still valid text, so most platforms accept them in names.</li>
+      <li><strong>Novelty print</strong> — flipped labels on gifts, party invitations, or classroom material about language and symmetry.</li>
+    </ul>
+  </section>
+
+  <section class="content">
+    <h2>Frequently asked questions</h2>
+    <div class="faq-item">
+      <h3>Does upside down text work on Instagram and Facebook?</h3>
+      <p>Yes. Because the output is standard Unicode, it pastes and displays correctly on Instagram, Facebook, TikTok, WhatsApp, and iMessage. A handful of very old apps that don't support extended Unicode ranges may show a blank box (□) instead of certain characters.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Will it work for capital letters and numbers?</h3>
+      <p>Yes. Letters, numbers, and common punctuation all have flipped equivalents. A few rare symbols don't have a true upside-down match in Unicode, so those are left unchanged.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Is this safe to use in a username?</h3>
+      <p>Generally yes, since it's valid Unicode text — but some platforms restrict special characters in usernames specifically (as opposed to bios or posts), so check the platform's rules if a username won't save.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What's the difference between all five modes?</h3>
+      <p>Upside Down flips each letter's shape and reverses the order — the classic version. Reversed Flip flips the letter shapes but keeps your original order. Reverse Text only reorders the letters, leaving shapes untouched. Mirror Text flips shapes horizontally instead of vertically. Fancy Fonts generates several bold, italic, script, and other decorative Unicode styles at once. See our <a href="blog/upside-down-vs-mirrored-text.html">full comparison guide</a> for examples.</p>
+    </div>
+  </section>
+
+  <!-- AD ZONE 2: secondary placement, after the FAQ and before the footer.
+       Good for a second unit once you have traffic to justify it — never place a third
+       unit on this page, since more than two ads on a single-tool page reads as
+       ad-heavy/content-light to both visitors and Google's quality reviewers. -->
+  <div class="ad-zone" id="ad-zone-2"></div>
+
+  <footer>
+    <p>© <span id="year"></span> Upside Down Text Generator · <a href="blog/index.html">Guides</a> · <a href="about.html">About</a> · <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Use</a> · <a href="contact.html">Contact</a></p>
+  </footer>
+</div>
+
+<script>
+/* ---------- Character maps for simple modes ---------- */
+const upsideMap = {
+  a:'ɐ', b:'q', c:'ɔ', d:'p', e:'ǝ', f:'ɟ', g:'ƃ', h:'ɥ', i:'ᴉ', j:'ɾ',
+  k:'ʞ', l:'ן', m:'ɯ', n:'u', o:'o', p:'d', q:'b', r:'ɹ', s:'s', t:'ʇ',
+  u:'n', v:'ʌ', w:'ʍ', x:'x', y:'ʎ', z:'z',
+  A:'∀', B:'B', C:'Ɔ', D:'D', E:'Ǝ', F:'Ⅎ', G:'⅁', H:'H', I:'I', J:'ſ',
+  K:'K', L:'˥', M:'W', N:'N', O:'O', P:'Ԁ', Q:'Ό', R:'ᴚ', S:'S', T:'⊥',
+  U:'∩', V:'Λ', W:'M', X:'X', Y:'⅄', Z:'Z',
+  '0':'0','1':'Ɩ','2':'ᄅ','3':'Ɛ','4':'ㄣ','5':'5','6':'9','7':'Ɫ','8':'8','9':'6',
+  '.':'˙', ',':"'", "'":',', '"':'„', '?':'¿', '!':'¡',
+  '(':')', ')':'(', '[':']', ']':'[', '{':'}', '}':'{',
+  '<':'>', '>':'<', '&':'⅋', '_':'‾', ';':'؛'
+};
+const mirrorMap = {
+  a:'ɒ', b:'d', c:'ɔ', d:'b', e:'ɘ', f:'ʇ', g:'ǫ', h:'ʜ', i:'i', j:'j',
+  k:'ʞ', l:'l', m:'m', n:'n', o:'o', p:'q', q:'p', r:'ɿ', s:'ƨ', t:'ƚ',
+  u:'u', v:'v', w:'w', x:'x', y:'y', z:'z',
+  C:'Ɔ', E:'Ǝ', J:'Ⴑ', N:'И', R:'Я', S:'Ƨ',
+  '(':')', ')':'(', '[':']', ']':'[', '{':'}', '}':'{',
+  '<':'>', '>':'<', '/':'\\', '\\':'/'
+};
+
+function simpleTransform(str, mode){
+  switch(mode){
+    case 'updown':
+      return str.split('').reverse().map(ch => upsideMap[ch] !== undefined ? upsideMap[ch] : ch).join('');
+    case 'reversedflip':
+      return str.split('').map(ch => upsideMap[ch] !== undefined ? upsideMap[ch] : ch).join('');
+    case 'reverse':
+      return str.split('').reverse().join('');
+    case 'mirror':
+      return str.split('').reverse().map(ch => mirrorMap[ch] !== undefined ? mirrorMap[ch] : ch).join('');
+    default:
+      return str;
+  }
+}
+
+/* ---------- Fancy font styles ---------- */
+function convertBlock(str, upperBase, lowerBase, digitBase, upperEx, lowerEx){
+  upperEx = upperEx || {}; lowerEx = lowerEx || {};
+  return str.split('').map(ch => {
+    const code = ch.charCodeAt(0);
+    if(ch >= 'A' && ch <= 'Z') return upperEx[ch] || String.fromCodePoint(upperBase + (code - 65));
+    if(ch >= 'a' && ch <= 'z') return lowerEx[ch] || String.fromCodePoint(lowerBase + (code - 97));
+    if(digitBase && ch >= '0' && ch <= '9') return String.fromCodePoint(digitBase + (code - 48));
+    return ch;
+  }).join('');
+}
+
+const smallCapsMap = {a:'ᴀ',b:'ʙ',c:'ᴄ',d:'ᴅ',e:'ᴇ',f:'ꜰ',g:'ɢ',h:'ʜ',i:'ɪ',j:'ᴊ',k:'ᴋ',l:'ʟ',m:'ᴍ',n:'ɴ',o:'ᴏ',p:'ᴘ',q:'ǫ',r:'ʀ',s:'s',t:'ᴛ',u:'ᴜ',v:'ᴠ',w:'ᴡ',x:'x',y:'ʏ',z:'ᴢ'};
+
+function circled(str){
+  return str.split('').map(ch => {
+    const code = ch.charCodeAt(0);
+    if(ch >= 'A' && ch <= 'Z') return String.fromCodePoint(0x24B6 + (code - 65));
+    if(ch >= 'a' && ch <= 'z') return String.fromCodePoint(0x24D0 + (code - 97));
+    if(ch === '0') return '\u24EA';
+    if(ch >= '1' && ch <= '9') return String.fromCodePoint(0x2460 + (code - 49));
+    return ch;
+  }).join('');
+}
+function smallCaps(str){
+  return str.split('').map(ch => {
+    const lower = ch.toLowerCase();
+    return smallCapsMap[lower] !== undefined ? smallCapsMap[lower] : ch;
+  }).join('');
+}
+function withCombining(str, mark){
+  return str.split('').map(ch => ch === ' ' ? ch : ch + mark).join('');
+}
+
+const fancyStyles = [
+  {name:'Bold', fn: s => convertBlock(s, 0x1D400, 0x1D41A, 0x1D7CE)},
+  {name:'Italic', fn: s => convertBlock(s, 0x1D434, 0x1D44E, null, {}, {h:'\u210E'})},
+  {name:'Bold Italic', fn: s => convertBlock(s, 0x1D468, 0x1D482, null)},
+  {name:'Script', fn: s => convertBlock(s, 0x1D49C, 0x1D4B6, null,
+      {B:'\u212C',E:'\u2130',F:'\u2131',H:'\u210B',I:'\u2110',L:'\u2112',M:'\u2133',R:'\u211B'},
+      {e:'\u212F',g:'\u210A',o:'\u2134'})},
+  {name:'Double-Struck', fn: s => convertBlock(s, 0x1D538, 0x1D552, 0x1D7D8,
+      {C:'\u2102',H:'\u210D',N:'\u2115',P:'\u2119',Q:'\u211A',R:'\u211D',Z:'\u2124'}, {})},
+  {name:'Circled', fn: circled},
+  {name:'Small Caps', fn: smallCaps},
+  {name:'Strikethrough', fn: s => withCombining(s, '\u0336')},
+  {name:'Underline', fn: s => withCombining(s, '\u0332')}
+];
+
+/* ---------- Wiring ---------- */
+const modeLabels = {
+  updown: 'flips upside down into',
+  reversedflip: 'flips (same order) into',
+  reverse: 'reverses into',
+  mirror: 'mirrors into',
+  fancy: 'styles into'
+};
+
+const input = document.getElementById('input');
+const output = document.getElementById('output');
+const singleOutputBox = document.getElementById('singleOutputBox');
+const fancyList = document.getElementById('fancyList');
+const count = document.getElementById('count');
+const copyBtn = document.getElementById('copyBtn');
+const clearBtn = document.getElementById('clearBtn');
+const copiedMsg = document.getElementById('copiedMsg');
+const dividerLabel = document.getElementById('dividerLabel');
+const modeButtons = document.querySelectorAll('.mode');
+let currentMode = 'updown';
+
+function copyText(text, btn){
+  if(!text) return;
+
+  // When a specific button triggered the copy (the 9 Fancy Fonts buttons),
+  // flash feedback on THAT button itself, right where the user is looking —
+  // the shared "Copied!" message near Clear/Copy is too far away to notice
+  // when there are 9 separate copy buttons in a list.
+  const flashButton = () => {
+    if (!btn) return;
+    const original = btn.textContent;
+    btn.textContent = 'Copied!';
+    btn.classList.add('just-copied');
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.textContent = original;
+      btn.classList.remove('just-copied');
+      btn.disabled = false;
+    }, 1200);
+  };
+  const doCopiedFlash = () => {
+    copiedMsg.style.display = 'inline';
+    setTimeout(() => copiedMsg.style.display = 'none', 1500);
+    flashButton();
+  };
+  navigator.clipboard.writeText(text).then(doCopiedFlash).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = text; document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); document.body.removeChild(ta);
+    doCopiedFlash();
+  });
+}
+
+function renderFancyList(val){
+  // Built entirely with createElement/textContent — generated text is user
+  // input and must never be interpreted as HTML, regardless of transform mode.
+  while (fancyList.firstChild) fancyList.removeChild(fancyList.firstChild);
+  fancyStyles.forEach(style => {
+    const text = val ? style.fn(val) : '';
+
+    const row = document.createElement('div');
+    row.className = 'fancy-row';
+
+    const textWrap = document.createElement('div');
+    const nameSpan = document.createElement('span');
+    nameSpan.className = 'fancy-name';
+    nameSpan.textContent = style.name;
+    const textSpan = document.createElement('span');
+    textSpan.className = 'fancy-text';
+    if (text) {
+      textSpan.textContent = text;
+    } else {
+      textSpan.textContent = '—';
+      textSpan.style.color = 'var(--muted)';
+      textSpan.style.fontStyle = 'italic';
+    }
+    textWrap.appendChild(nameSpan);
+    textWrap.appendChild(document.createElement('br'));
+    textWrap.appendChild(textSpan);
+
+    const btn = document.createElement('button');
+    btn.className = 'fancy-copy';
+    btn.type = 'button';
+    btn.textContent = 'Copy';
+    btn.setAttribute('aria-label', 'Copy ' + style.name + ' style text');
+    btn.disabled = !text;
+    btn.addEventListener('click', () => copyText(text, btn));
+
+    row.appendChild(textWrap);
+    row.appendChild(btn);
+    fancyList.appendChild(row);
+  });
+}
+
+function update(){
+  const val = input.value;
+  count.textContent = val.length + ' character' + (val.length === 1 ? '' : 's');
+  if(currentMode === 'fancy'){
+    singleOutputBox.style.display = 'none';
+    fancyList.classList.add('visible');
+    copyBtn.style.display = 'none';
+    renderFancyList(val);
+  } else {
+    singleOutputBox.style.display = '';
+    fancyList.classList.remove('visible');
+    copyBtn.style.display = '';
+    output.textContent = simpleTransform(val, currentMode);
+  }
+  scheduleStatusAnnouncement();
+}
+
+/* Debounce screen-reader announcements so results are read out once typing
+   pauses, rather than on every keystroke (which would be overwhelming). */
+const srStatus = document.getElementById('srStatus');
+let srTimer = null;
+function scheduleStatusAnnouncement(){
+  clearTimeout(srTimer);
+  srTimer = setTimeout(() => {
+    if(currentMode === 'fancy'){
+      srStatus.textContent = input.value ? 'Fancy font styles updated below.' : '';
+    } else {
+      srStatus.textContent = output.textContent ? 'Result: ' + output.textContent : '';
+    }
+  }, 700);
+}
+
+input.addEventListener('input', update);
+
+function activateMode(btn){
+  modeButtons.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); b.tabIndex = -1; });
+  btn.classList.add('active');
+  btn.setAttribute('aria-selected', 'true');
+  btn.tabIndex = 0;
+  currentMode = btn.dataset.mode;
+  dividerLabel.textContent = modeLabels[currentMode];
+  dividerLabel.style.display = currentMode === 'fancy' ? 'none' : 'flex';
+  update();
+}
+
+const modeButtonList = Array.from(modeButtons);
+modeButtonList.forEach((btn, i) => {
+  btn.tabIndex = btn.classList.contains('active') ? 0 : -1;
+
+  btn.addEventListener('click', () => activateMode(btn));
+
+  // Standard ARIA tabs keyboard pattern: Left/Right (and Home/End) move focus
+  // and activate the tab, matching how native tab widgets behave.
+  btn.addEventListener('keydown', (e) => {
+    let targetIndex = null;
+    if (e.key === 'ArrowRight') targetIndex = (i + 1) % modeButtonList.length;
+    else if (e.key === 'ArrowLeft') targetIndex = (i - 1 + modeButtonList.length) % modeButtonList.length;
+    else if (e.key === 'Home') targetIndex = 0;
+    else if (e.key === 'End') targetIndex = modeButtonList.length - 1;
+    if (targetIndex !== null) {
+      e.preventDefault();
+      const target = modeButtonList[targetIndex];
+      activateMode(target);
+      target.focus();
+    }
+  });
+});
+
+copyBtn.addEventListener('click', () => copyText(output.textContent));
+
+clearBtn.addEventListener('click', () => {
+  input.value = '';
+  update();
+  input.focus();
+});
+
+/* ---------- Dark mode ---------- */
+const themeToggle = document.getElementById('themeToggle');
+function applyTheme(theme){
+  document.documentElement.setAttribute('data-theme', theme);
+  themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+}
+const savedTheme = (() => { try { return localStorage.getItem('theme'); } catch(e){ return null; } })();
+const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+applyTheme(savedTheme || (prefersDark ? 'dark' : 'light'));
+themeToggle.addEventListener('click', () => {
+  const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  applyTheme(next);
+  try { localStorage.setItem('theme', next); } catch(e){}
+});
+
+document.getElementById('year').textContent = new Date().getFullYear();
+update();
+</script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Unicode Explanation for How Upside Down Text Works</title>
+<link rel="canonical" href="https://upsidedowntext.design/blog/how-upside-down-text-unicode-works.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Unicode Explanation for How Upside Down Text Works — Upside Down Text Generator">
+<meta property="og:description" content="The Unicode Explanation for How Upside Down Text Works">
+<meta property="og:url" content="https://upsidedowntext.design/blog/how-upside-down-text-unicode-works.html">
+<meta property="og:site_name" content="Upside Down Text Generator">
+<meta property="og:image" content="https://upsidedowntext.design/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://upsidedowntext.design/og-image.png">
+
+<link rel="icon" href="../favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta name="description" content="A closer look at the Unicode characters behind upside-down text generators, and why they display correctly across almost every app.">
+<style>
+  body{font-family:"Iowan Old Style","Palatino Linotype",Georgia,serif;background:#f6f2e9;color:#1c1a1f;line-height:1.75;}
+  .wrap{max-width:680px;margin:0 auto;padding:48px 24px 80px;}
+  h1{font-size:30px;line-height:1.2;}
+  h2{font-size:21px;margin-top:36px;}
+  a{color:#9c6a1e;}
+  p,li{color:#3a362f;max-width:64ch;}
+  .meta{color:#8a8371;font-size:13px;margin-bottom:28px;}
+  .cta{background:#ece5d6;border:1px solid #d8cfb9;padding:18px;border-radius:4px;margin:28px 0;}
+  footer{margin-top:60px;padding-top:20px;border-top:1px solid #d8cfb9;font-size:13px;color:#8a8371;}
+
+  .ad-zone:empty{display:none;}
+  .ad-zone{margin:32px 0;}
+  .related{margin-top:44px;padding-top:20px;border-top:1px solid #d8cfb9;}
+  .related h3{font-size:15px;color:#6b6455;margin:0 0 10px;text-transform:uppercase;letter-spacing:.04em;}
+  .related ul{list-style:none;padding:0;margin:0;}
+  .related li{margin-bottom:8px;}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--gold-deep,#9c6a1e);outline-offset:2px;}
+  .skip-link{position:absolute;left:-9999px;top:0;background:#c98a2c;color:#fff;padding:10px 16px;z-index:100;border-radius:0 0 4px 0;font-size:14px;}
+  .skip-link:focus{left:0;}
+  .sitenav{display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid #d8cfb9;margin-bottom:8px;flex-wrap:wrap;gap:10px;}
+  .sitenav-brand{font-family:Georgia,serif;font-weight:bold;font-size:17px;color:#1c1a1f;letter-spacing:-0.01em;text-decoration:none;}
+  .sitenav-links{display:flex;gap:20px;flex-wrap:wrap;}
+  .sitenav-links a{font-size:14px;color:#6b6455;text-decoration:none;border-bottom:2px solid transparent;padding-bottom:2px;}
+  .sitenav-links a:hover{color:#9c6a1e;border-bottom-color:#9c6a1e;}
+  .sitenav-links a[aria-current="page"]{color:#1c1a1f;font-weight:bold;}
+  .breadcrumb{font-size:13px;color:#8a8371;margin:4px 0 12px;}
+  .breadcrumb a{color:#9c6a1e;}
+  .breadcrumb span[aria-current]{color:#3a362f;}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://upsidedowntext.design/"},
+    {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://upsidedowntext.design/blog/index.html"},
+    {"@type": "ListItem", "position": 3, "name": "The Unicode Explanation for How Upside Down Text Works", "item": "https://upsidedowntext.design/blog/how-upside-down-text-unicode-works.html"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "The Unicode Explanation for How Upside Down Text Works",
+  "description": "A closer look at the Unicode characters behind upside-down text generators.",
+  "datePublished": "2026-09-25",
+  "dateModified": "2026-09-25",
+  "author": {"@type": "Organization", "name": "Upside Down Text Generator"},
+  "publisher": {"@type": "Organization", "name": "Upside Down Text Generator"},
+  "mainEntityOfPage": {"@type": "WebPage", "@id": "https://upsidedowntext.design/blog/how-upside-down-text-unicode-works.html"}
+}
+</script>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<div class="wrap">
+  <nav class="sitenav">
+    <a href="../index.html" class="sitenav-brand">Upside Down Text</a>
+    <div class="sitenav-links">
+      <a href="../index.html">Tool</a>
+      <a href="../blog/index.html">Guides</a>
+      <a href="../about.html">About</a>
+      <a href="../contact.html">Contact</a>
+    </div>
+  </nav>
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="../index.html">Home</a> <span aria-hidden="true">→</span> <a href="index.html">Guides</a> <span aria-hidden="true">→</span> <span aria-current="page">The Unicode Explanation for How Upside Down Text Works</span>
+  </nav>
+  <h1 id="main">The Unicode Explanation for How Upside Down Text Works</h1>
+  <p class="meta">Guide · 6 min read</p>
+  <p class="meta">By Upside Down Text Generator · Published September 25, 2026</p>
+
+  <p>There's no upside-down "mode" that browsers or phones support — every flipped letter you see is a distinct, ordinary character that happens to have been designed to resemble another letter rotated 180°. Understanding where those characters come from explains both why the effect works and why it occasionally doesn't.</p>
+
+
+  <!-- AD ZONE: in-article placement after the opening paragraph. Paste your AdSense <ins> unit here after approval. -->
+  <div class="ad-zone" id="ad-zone-a"></div>
+
+  <h2>Borrowed from the phonetic alphabet</h2>
+  <p>Most lowercase flipped letters come from the International Phonetic Alphabet (IPA), the character set linguists use to represent the sounds of spoken language precisely. The IPA happens to include characters like ɐ, ǝ, and ɹ for specific vowel and consonant sounds — characters that, by coincidence of shape, look like rotated versions of a, e, and r. A flipped-text generator isn't inventing these shapes; it's borrowing existing Unicode code points that were designed for an entirely different purpose and happened to end up looking right for this one.</p>
+
+  <h2>Borrowed from math and other symbol sets</h2>
+  <p>Capital letters are harder to fake this way, since IPA doesn't cover as many of them. Generators fall back on mathematical operator symbols and other technical blocks — the "for all" symbol (∀) doubles as an upside-down A, and the "there exists" symbol turns sideways for a rough E. These substitutions are visually close but not always exact, which is why flipped capitals sometimes look slightly different in style from the lowercase letters around them.</p>
+
+  <h2>Why it displays correctly almost everywhere</h2>
+  <p>Because every character used is a standard, decades-old part of the Unicode specification (not a custom font or an image), any device with reasonably current font support renders it correctly the same way it renders any other letter — copy, paste, resize, and search all work normally. The only failure case is a device whose installed font is missing the glyph for a specific character, which shows as a blank box instead of failing the whole line.</p>
+
+  <div class="cta">
+    <strong>See it in action:</strong> type a sentence into <a href="../index.html">the upside down text generator</a> and copy the result into a plain text editor — it's still just text, character for character.
+  </div>
+  <div class="related">
+    <h3>Related guides</h3>
+    <ul>
+      <li><a href="upside-down-text-boxes-not-showing.html">Why Upside Down Text Shows Boxes Instead of Letters</a></li>
+      <li><a href="upside-down-vs-mirrored-text.html">Upside Down Text vs. Mirrored Text: What's the Difference?</a></li>
+      <li><a href="upside-down-text-tiktok-captions.html">Upside Down Text for TikTok Captions and Comments</a></li>
+      <li><a href="reverse-text-vs-reversed-flip-text.html">Reverse Text vs. Reversed Flip Text: The Real Difference</a></li>
+      <li><a href="index.html">All guides</a></li>
+    </ul>
+  </div>
+
+  <footer>© <span id="year"></span> Upside Down Text Generator · <a href="../index.html">Home</a> · <a href="index.html">More guides</a> · <a href="../privacy.html">Privacy Policy</a> · <a href="../terms.html">Terms of Use</a> · <a href="../contact.html">Contact</a></footer>
+</div>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
