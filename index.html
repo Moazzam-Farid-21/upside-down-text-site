@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Upside Down Text Generator — Flip Your Text Instantly</title>
-<meta name="description" content="Free upside down text generator. Type normal text and instantly get flipped, upside-down Unicode text you can copy and paste anywhere — Instagram, Facebook, TikTok, iMessage. Also does reverse, mirror, and fancy fonts.">
+<title>Upside Down Text Generator – Copy and Paste Flipped Text</title>
+<meta name="description" content="Free upside down text generator. Flip, reverse, mirror or style text, copy and paste it into Instagram, TikTok or WhatsApp, or flip it back to normal.">
 <link rel="canonical" href="https://upsidedowntext.design/">
-<link rel="icon" href="favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Upside Down Text Generator — Flip Your Text Instantly">
+<meta property="og:title" content="Upside Down Text Generator – Copy and Paste Flipped Text">
 <meta property="og:description" content="Free tool to flip, reverse, mirror, or style your text instantly. Copy and paste anywhere — no sign-up needed.">
 <meta property="og:url" content="https://upsidedowntext.design/">
 <meta property="og:site_name" content="Upside Down Text Generator">
@@ -45,10 +45,46 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {"@type":"Question","name":"Does upside down text work on Instagram and Facebook?","acceptedAnswer":{"@type":"Answer","text":"Yes. Because the output is standard Unicode, it pastes and displays correctly on Instagram, Facebook, TikTok, WhatsApp, and iMessage. A handful of very old apps that don't support extended Unicode ranges may show a blank box instead of certain characters."}},
-    {"@type":"Question","name":"Will it work for capital letters and numbers?","acceptedAnswer":{"@type":"Answer","text":"Yes. Letters, numbers, and common punctuation all have flipped equivalents. A few rare symbols don't have a true upside-down match in Unicode, so those are left unchanged."}},
-    {"@type":"Question","name":"Is this safe to use in a username?","acceptedAnswer":{"@type":"Answer","text":"Generally yes, since it's valid Unicode text — but some platforms restrict special characters in usernames specifically, so check the platform's rules if a username won't save."}},
-    {"@type":"Question","name":"What's the difference between upside down, reversed flip, reverse, and mirror text?","acceptedAnswer":{"@type":"Answer","text":"Upside Down flips each letter's shape and reverses the order. Reversed Flip flips the letter shapes but keeps the original order. Reverse Text only reorders the letters. Mirror Text flips shapes horizontally instead of vertically."}}
+    {
+      "@type": "Question",
+      "name": "Does upside down text work on Instagram and Facebook?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Because the output is standard Unicode, it pastes and displays correctly on Instagram, Facebook, TikTok, WhatsApp, and iMessage. A handful of very old apps that don't support extended Unicode ranges may show a blank box (□) instead of certain characters."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will it work for capital letters and numbers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Letters, numbers, and common punctuation all have flipped equivalents. A few rare symbols don't have a true upside-down match in Unicode, so those are left unchanged."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this safe to use in a username?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Generally yes, since it's valid Unicode text — but some platforms restrict special characters in usernames specifically (as opposed to bios or posts), so check the platform's rules if a username won't save."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I flip upside down text back to normal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Open the Flip Back tab, paste the flipped text into the box, and the tool reverses the process and shows the normal text. It works best on text created with this tool's Upside Down mode, because that is the exact mapping it reverses."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between all six modes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Upside Down flips each letter's shape and reverses the order — the classic version. Reversed Flip flips the letter shapes but keeps your original order. Reverse Text only reorders the letters, leaving shapes untouched. Mirror Text flips shapes horizontally instead of vertically. Fancy Fonts generates several bold, italic, script, and other decorative Unicode styles at once. Flip Back turns upside down text back into normal text. See our full comparison guide for examples."
+      }
+    }
   ]
 }
 </script>
@@ -177,6 +213,16 @@
     .fancy-row{flex-direction:column;align-items:flex-start;}
     .fancy-copy{align-self:flex-end;}
   }
+  .input-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px;}
+  .input-head label{margin-bottom:0;}
+  button.small{font-size:13px;padding:6px 14px;}
+  .examples{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px;font-size:13px;color:var(--muted);}
+  button.chip{background:var(--card);color:var(--gold-deep);border:1px solid var(--line);font-size:13px;font-weight:500;padding:6px 12px;border-radius:16px;}
+  button.chip:hover{border-color:var(--gold-deep);filter:none;}
+  .paste-hint{font-size:13px;color:var(--muted);}
+  @media (max-width:480px){
+    button.chip,button.small{padding:10px 14px;}
+  }
 </style>
 </head>
 <body>
@@ -185,22 +231,33 @@
   <nav class="sitenav">
     <span class="sitenav-brand">Upside Down Text</span>
     <div class="sitenav-links">
-      <a href="index.html" aria-current="page">Tool</a>
-      <a href="blog/index.html">Guides</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
+      <a href="/" aria-current="page">Tool</a>
+      <a href="/blog/">Guides</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
     </div>
   </nav>
   <header>
     <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">🌙</button>
     <p class="kicker">ǝpᴉsdn uʍop</p>
     <h1>Upside Down Text Generator</h1>
-    <p class="lede">Type anything below and it transforms instantly — five different modes, all real Unicode characters you can paste into Instagram bios, texts, or Facebook posts. No app, no sign-up.</p>
+    <p class="lede">Type anything below and it transforms instantly — six different modes, all real Unicode characters you can paste into Instagram bios, texts, or Facebook posts. No app, no sign-up.</p>
   </header>
 
   <div class="tool">
-    <label for="input">Type your text</label>
-    <textarea id="input" placeholder="Type something here…" aria-describedby="count"></textarea>
+    <div class="input-head">
+      <label for="input">Type your text</label>
+      <button class="ghost small" id="pasteBtn" type="button">Paste</button>
+    </div>
+    <textarea id="input" placeholder="Type something here…" aria-describedby="count" maxlength="5000"></textarea>
+
+    <div class="examples">
+      <span class="examples-label">Try:</span>
+      <button class="chip" type="button" data-example="Hello world">Hello world</button>
+      <button class="chip" type="button" data-example="Good morning">Good morning</button>
+      <button class="chip" type="button" data-example="Happy birthday">Happy birthday</button>
+      <span class="paste-hint" id="pasteHint" role="status" aria-live="polite"></span>
+    </div>
 
     <div class="modes" role="tablist" aria-label="Transformation mode">
       <button class="mode active" role="tab" aria-selected="true" aria-controls="resultRegion" data-mode="updown" type="button">Upside Down</button>
@@ -208,6 +265,7 @@
       <button class="mode" role="tab" aria-selected="false" aria-controls="resultRegion" data-mode="reverse" type="button">Reverse Text</button>
       <button class="mode" role="tab" aria-selected="false" aria-controls="resultRegion" data-mode="mirror" type="button">Mirror Text</button>
       <button class="mode" role="tab" aria-selected="false" aria-controls="resultRegion" data-mode="fancy" type="button">Fancy Fonts</button>
+      <button class="mode" role="tab" aria-selected="false" aria-controls="resultRegion" data-mode="decode" type="button">Flip Back</button>
     </div>
 
     <div class="divider" id="dividerLabel">flips upside down into</div>
@@ -242,6 +300,11 @@
   </section>
 
   <section class="content">
+    <h2>Upside down letters, symbols and copy and paste</h2>
+    <p>Need a single character instead of a whole sentence? The <a href="/upside-down-alphabet">upside down alphabet chart</a> lists every letter, number and symbol in its flipped form, and each one copies with one click. People often call this an upside down font, but it is not a font. Every character is a Unicode symbol, which is why it pastes into chats, bios and documents without installing anything. For ready-made lines, see <a href="/blog/upside-down-text-messages-to-copy">upside down messages to copy and paste</a>, or read <a href="/how-to-type-upside-down">how to type upside down on any device</a> if you want to rotate text in Word, Slides or CSS instead.</p>
+  </section>
+
+  <section class="content">
     <h2>Where people actually use flipped and styled text</h2>
     <ul class="uses">
       <li><strong>Instagram and TikTok bios</strong> — a flipped or fancy line makes a bio stand out in a feed of identical-looking text.</li>
@@ -249,6 +312,11 @@
       <li><strong>Usernames and display names</strong> — flipped and styled characters are still valid text, so most platforms accept them in names.</li>
       <li><strong>Novelty print</strong> — flipped labels on gifts, party invitations, or classroom material about language and symmetry.</li>
     </ul>
+  </section>
+
+  <section class="content">
+    <h2>Good to know before you post it</h2>
+    <p>Flipped and styled text is decorative. Screen readers may read it letter by letter or skip it, so avoid using it for anything essential such as contact details, instructions or links. Some characters have no true upside down twin in Unicode and stay unchanged, and search on some platforms may not match flipped text to its normal spelling.</p>
   </section>
 
   <section class="content">
@@ -266,8 +334,12 @@
       <p>Generally yes, since it's valid Unicode text — but some platforms restrict special characters in usernames specifically (as opposed to bios or posts), so check the platform's rules if a username won't save.</p>
     </div>
     <div class="faq-item">
-      <h3>What's the difference between all five modes?</h3>
-      <p>Upside Down flips each letter's shape and reverses the order — the classic version. Reversed Flip flips the letter shapes but keeps your original order. Reverse Text only reorders the letters, leaving shapes untouched. Mirror Text flips shapes horizontally instead of vertically. Fancy Fonts generates several bold, italic, script, and other decorative Unicode styles at once. See our <a href="blog/upside-down-vs-mirrored-text.html">full comparison guide</a> for examples.</p>
+      <h3>How do I flip upside down text back to normal?</h3>
+      <p>Open the Flip Back tab, paste the flipped text into the box, and the tool reverses the process and shows the normal text. It works best on text created with this tool's Upside Down mode, because that is the exact mapping it reverses.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What's the difference between all six modes?</h3>
+      <p>Upside Down flips each letter's shape and reverses the order — the classic version. Reversed Flip flips the letter shapes but keeps your original order. Reverse Text only reorders the letters, leaving shapes untouched. Mirror Text flips shapes horizontally instead of vertically. Fancy Fonts generates several bold, italic, script, and other decorative Unicode styles at once. Flip Back turns upside down text back into normal text. See our <a href="/blog/upside-down-vs-mirrored-text">full comparison guide</a> for examples.</p>
     </div>
   </section>
 
@@ -278,7 +350,7 @@
   <div class="ad-zone" id="ad-zone-2"></div>
 
   <footer>
-    <p>© <span id="year"></span> Upside Down Text Generator · <a href="blog/index.html">Guides</a> · <a href="about.html">About</a> · <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Use</a> · <a href="contact.html">Contact</a></p>
+    <p>© <span id="year"></span> Upside Down Text Generator · <a href="/blog/">Guides</a> · <a href="/about">About</a> · <a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms of Use</a> · <a href="/contact">Contact</a></p>
   </footer>
 </div>
 
@@ -305,8 +377,14 @@ const mirrorMap = {
   '<':'>', '>':'<', '/':'\\', '\\':'/'
 };
 
+/* Inverse of the upside-down mapping, used by the Flip Back tab. */
+const unflipMap = {};
+Object.keys(upsideMap).forEach(k => { unflipMap[upsideMap[k]] = k; });
+
 function simpleTransform(str, mode){
   switch(mode){
+    case 'decode':
+      return str.split('').reverse().map(ch => unflipMap[ch] !== undefined ? unflipMap[ch] : ch).join('');
     case 'updown':
       return str.split('').reverse().map(ch => upsideMap[ch] !== undefined ? upsideMap[ch] : ch).join('');
     case 'reversedflip':
@@ -375,7 +453,8 @@ const modeLabels = {
   reversedflip: 'flips (same order) into',
   reverse: 'reverses into',
   mirror: 'mirrors into',
-  fancy: 'styles into'
+  fancy: 'styles into',
+  decode: 'flips back into'
 };
 
 const input = document.getElementById('input');
@@ -465,7 +544,8 @@ function renderFancyList(val){
 
 function update(){
   const val = input.value;
-  count.textContent = val.length + ' character' + (val.length === 1 ? '' : 's');
+  const words = val.trim() ? val.trim().split(/\s+/).length : 0;
+  count.textContent = val.length + ' character' + (val.length === 1 ? '' : 's') + ' · ' + words + ' word' + (words === 1 ? '' : 's');
   if(currentMode === 'fancy'){
     singleOutputBox.style.display = 'none';
     fancyList.classList.add('visible');
@@ -505,6 +585,7 @@ function activateMode(btn){
   currentMode = btn.dataset.mode;
   dividerLabel.textContent = modeLabels[currentMode];
   dividerLabel.style.display = currentMode === 'fancy' ? 'none' : 'flex';
+  input.placeholder = currentMode === 'decode' ? 'Paste upside down text here to flip it back…' : 'Type something here…';
   update();
 }
 
@@ -532,6 +613,36 @@ modeButtonList.forEach((btn, i) => {
 });
 
 copyBtn.addEventListener('click', () => copyText(output.textContent));
+
+/* Paste button: reads the clipboard when the browser allows it. */
+const pasteBtn = document.getElementById('pasteBtn');
+const pasteHint = document.getElementById('pasteHint');
+let pasteTimer = null;
+function showPasteHint(msg){
+  pasteHint.textContent = msg;
+  clearTimeout(pasteTimer);
+  pasteTimer = setTimeout(() => { pasteHint.textContent = ''; }, 5000);
+}
+pasteBtn.addEventListener('click', async () => {
+  try {
+    const text = await navigator.clipboard.readText();
+    input.value = text.slice(0, 5000);
+    update();
+    input.focus();
+  } catch (e) {
+    input.focus();
+    showPasteHint('Your browser blocked automatic paste. Press Ctrl+V (or Cmd+V) in the box instead.');
+  }
+});
+
+/* Example chips: fill the box with sample text. */
+document.querySelectorAll('.chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    input.value = chip.dataset.example;
+    update();
+    input.focus();
+  });
+});
 
 clearBtn.addEventListener('click', () => {
   input.value = '';
